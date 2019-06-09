@@ -11,7 +11,7 @@ Basic animation library for **LÖVE** using **aseprite**.
 
 ## Example usage
 
-This _really_ simple code loads an animation and display it on screen.
+This _really_ simple code loads an animation and displays it on screen.
 
 ```lua
 local nim = require "nim"
@@ -19,7 +19,7 @@ local nim = require "nim"
 function love.load()
   -- Actually load the animation only once (using a cache)
   player = nim.new("sprites/player.json", "walking")
-  lost_dark_evil_player = nim.new("sprites/player.json", "attacking")
+  lost_dark_evil_player = nim.new("sprites/player.json")
 end
 
 function love.update(dt)
