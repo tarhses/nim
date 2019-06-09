@@ -22,7 +22,7 @@
 -- SOFTWARE.
 --
 
-local json = require "libs.json"
+local json = require "json"
 
 local nim = {
   _VERSION = "1.0",
