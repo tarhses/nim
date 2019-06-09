@@ -147,11 +147,9 @@ function nim:update(dt)
 end
 
 --- Draw the animation on screen.
--- tparam x number x coordinates
--- tparam y number y coordinates
 -- param ... parameters passed to love.graphics.draw
-function nim:draw(x, y, ...)
-  love.graphics.draw(self.animation.image, self.frame.quad, x, y, ...)
+function nim:draw(...)
+  love.graphics.draw(self.animation.image, self.frame.quad, ...)
 end
 
 return nim
