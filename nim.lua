@@ -22,7 +22,7 @@
 -- SOFTWARE.
 --
 
-local json = require "json"
+local json = require((...):gsub("nim", "json"))
 
 local nim = {
   _VERSION = "1.0",
@@ -91,33 +91,26 @@ function nim.new(path, tag)
   return self
 end
 
---- Pause the animation.
-function nim:pause()
-  self.playing = false
-end
-
---- Unpause the animation.
-function nim:unpause()
-  self.playing = true
-end
-
---- Set the animation tag.
--- Reset the animation at the first frame of the tag.
+--- Set the animation tag if it's different from the current one.
 -- @tparam tag string tag to be set
-function nim:setTag(tag)
-  self.tag = assert(self.animation.tags[tag], "Undefined tag " .. tag)
-  self.timer = 0
-  self.playing = true
+-- @tparam forceReset bool whether to reset anyway
+function nim:setTag(tag, forceReset)
+  local t = assert(self.animation.tags[tag], "Undefined tag " .. tag)
+  if t ~= self.tag or forceReset then
+    self.tag = t
+    self.timer = 0
+    self.playing = true
 
-  if self.tag.direction == "forward" or self.tag.direction == "pingpong" then
-    self.i = 1
-    self.step = 1
-  elseif self.tag.direction == "reverse" then
-    self.i = #self.tag.frames
-    self.step = -1
+    if t.direction == "forward" or t.direction == "pingpong" then
+      self.i = 1
+      self.step = 1
+    elseif t.direction == "reverse" then
+      self.i = #self.tag.frames
+      self.step = -1
+    end
+
+    self.frame = t.frames[self.i]
   end
-
-  self.frame = self.tag.frames[self.i]
 end
 
 --- Update the animation if unpaused.
@@ -150,6 +143,35 @@ end
 -- param ... parameters passed to love.graphics.draw
 function nim:draw(...)
   love.graphics.draw(self.animation.image, self.frame.quad, ...)
+end
+
+--- Pause the animation.
+function nim:pause()
+  self.playing = false
+end
+
+--- Unpause the animation.
+function nim:unpause()
+  self.playing = true
+end
+
+--- Get the animations's width
+-- @treturn number width
+function nim:getWidth()
+  return self.frame.w
+end
+
+--- Get the animations's height
+-- @treturn number height
+function nim:getHeight()
+  return self.frame.h
+end
+
+--- Get the animations's dimensions
+-- @treturn number width
+-- @treturn number height
+function nim:getDimensions()
+  return self.frame.w, self.frame.h
 end
 
 return nim
