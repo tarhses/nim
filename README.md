@@ -57,11 +57,11 @@ end
 
 * `Animation:draw(x, y, r, sx, sy, ox, oy, kx, ky)`
 
-  Draw the animation on screen. The other parameters are the same as [love.graphics.draw](https://love2d.org/wiki/love.graphics.draw) (i.e. `x` and `y` for position , `r` for rotation, `sx` and `sy` for scaling, `ox` and `oy` for an origin offset, and `kx` and `ky` for shearing).
+  Draw the animation on screen. The parameters are the same as [love.graphics.draw](https://love2d.org/wiki/love.graphics.draw) (i.e. `x` and `y` for position , `r` for rotation, `sx` and `sy` for scaling, `ox` and `oy` for an origin offset, and `kx` and `ky` for shearing).
 
 * `Animation:pause()` and `Animation:unpause()`
 
-  Pause/Unpause the animation.
+  Pause or unpause the animation.
 
 * `Animation:getWidth()`, `Animation:getHeight()`, and `Animation:getDimensions()`
 
