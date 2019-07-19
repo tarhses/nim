@@ -49,7 +49,7 @@ end
 
 * `Animation:update(dt)`
 
-  Update the animation. `dt` are the seconds elapsed since last frame.
+  Update the animation and return true if the animation finished on this frame. `dt` are the seconds elapsed since last frame.
 
 * `Animation:draw(x=0, y=0, r=0, sx=1, sy=sx, ox=0, oy=0, kx=0, ky=0)`
 
