@@ -1,6 +1,6 @@
 # nim.lua
 
-Basic animation library for **LÖVE** using **aseprite**.
+Basic animation library for **LÖVE** using **aseprite** sprite sheets.
 
 ## Features
 
@@ -39,7 +39,7 @@ end
 
 ## API
 
-* `nim.new(path[, tag])`
+* `nim.new(path, tag=nil)`
 
   Create a new Animation loading JSON file at `path`. The JSON file must be created from aseprite (`File > Export Sprite Sheet`) with _Array_ and _Frame Tags_ options.
 
@@ -47,15 +47,11 @@ end
 
   Each time a new animation is loaded, it's cached for efficiency.
 
-* `Animation:setTag(tag, forceReset=false)`
-
-  Change the current `tag` of the animation and restart if it's different from the current one. If `forceReset` is set to true, the animation will start over anyway.
-
 * `Animation:update(dt)`
 
   Update the animation. `dt` are the seconds elapsed since last frame.
 
-* `Animation:draw(x, y, r, sx, sy, ox, oy, kx, ky)`
+* `Animation:draw(x=0, y=0, r=0, sx=1, sy=sx, ox=0, oy=0, kx=0, ky=0)`
 
   Draw the animation on screen. The parameters are the same as [love.graphics.draw](https://love2d.org/wiki/love.graphics.draw) (i.e. `x` and `y` for position , `r` for rotation, `sx` and `sy` for scaling, `ox` and `oy` for an origin offset, and `kx` and `ky` for shearing).
 
@@ -63,9 +59,21 @@ end
 
   Pause or unpause the animation.
 
+* `Animation:getTag()`
+
+  Get the current tag's name.
+
+* `Animation:setTag(tag, forceReset=false)`
+
+  Change the current `tag` of the animation and restart if it's different from the current one. If `forceReset` is set to true, the animation will start over anyway.
+
 * `Animation:getWidth()`, `Animation:getHeight()`, and `Animation:getDimensions()`
 
   Return the width, height or both of the animation.
+
+* `Animation:getDuration(tag=nil)`
+
+  Return the total duration of a given tag. If `tag` is set to nil, the duration of the current tag is returned.
 
 ## External libraries
 
